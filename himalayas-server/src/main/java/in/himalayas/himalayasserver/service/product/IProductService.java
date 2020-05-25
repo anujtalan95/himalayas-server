@@ -2,7 +2,6 @@ package in.himalayas.himalayasserver.service.product;
 
 import java.util.List;
 
-import in.himalayas.himalayasserver.entity.MasterData;
 import in.himalayas.himalayasserver.entity.Product;
 import in.himalayas.himalayasserver.entity.SearchTag;
 

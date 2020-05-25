@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import in.himalayas.himalayasserver.entity.DataStore;
-import in.himalayas.himalayasserver.entity.MasterData;
 import in.himalayas.himalayasserver.entity.Product;
 import in.himalayas.himalayasserver.entity.SearchTag;
 import in.himalayas.himalayasserver.repository.ProductRepository;
