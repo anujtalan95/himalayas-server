@@ -14,42 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import in.himalayas.himalayasserver.entity.MasterData;
-import in.himalayas.himalayasserver.service.master.IMasterDataService;
+import in.himalayas.himalayasserver.entity.SearchTag;
+import in.himalayas.himalayasserver.service.master.ISearchTagMasterService;
 
 @RestController
-@RequestMapping("api/master")
-public class MasterDataController {
+@RequestMapping("api/searchtag/master")
+public class SearchTagMasterController {
 	
 	@Autowired
-	private IMasterDataService masterDataService;
+	private ISearchTagMasterService searchTagMasterService;
 
 	@GetMapping
-	public List<MasterData> listAll() {
-		return masterDataService.findAll();
+	public List<SearchTag> listAll() {
+		return searchTagMasterService.findAll();
 	}
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.OK)
-	public void create(@RequestBody MasterData masterData) {
-		masterDataService.save(masterData);
+	public void create(@RequestBody SearchTag searchTag) {
+		searchTagMasterService.save(searchTag);
 	}
 	
 	@GetMapping("/{id}")
-	public MasterData get(@PathVariable("id") long id) {
-		return masterDataService.getOne(id);
+	public SearchTag get(@PathVariable("id") long id) {
+		return searchTagMasterService.getOne(id);
 	}
 	
 	@DeleteMapping("/{id}/delete")
 	@ResponseStatus(HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
-		masterDataService.deleteById(id);
+		searchTagMasterService.deleteById(id);
 	}
 	
 	@PutMapping("/{id}/update")
 	@ResponseStatus(HttpStatus.OK)
-	public void update(@RequestBody MasterData masterData, @PathVariable("id") Long id) {
-		masterDataService.updateMaster(masterData, id);
+	public void update(@RequestBody SearchTag searchTag, @PathVariable("id") Long id) {
+		searchTagMasterService.updateMaster(searchTag, id);
 	}
 	
 }

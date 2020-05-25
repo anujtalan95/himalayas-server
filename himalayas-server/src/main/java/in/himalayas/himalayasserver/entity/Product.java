@@ -25,9 +25,9 @@ public class Product extends BaseEntity implements Serializable {
 	private String productDescription;
 	private String location;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.DETACH})
 	@JoinTable(name = "product_tag_mapping", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
-	private Set<MasterData> searchTags;
+	private Set<SearchTag> searchTags;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private DataStore dataStore;
@@ -72,11 +72,11 @@ public class Product extends BaseEntity implements Serializable {
 		this.dataStore = dataStore;
 	}
 
-	public Set<MasterData> getSearchTags() {
+	public Set<SearchTag> getSearchTags() {
 		return searchTags;
 	}
 
-	public void setSearchTags(Set<MasterData> searchTags) {
+	public void setSearchTags(Set<SearchTag> searchTags) {
 		this.searchTags = searchTags;
 	}
 	

@@ -1,6 +1,7 @@
 package in.himalayas.himalayasserver.service.product;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -31,25 +32,25 @@ public class ProductService implements IProductService {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	public MasterData findTagByCode(Class className, String code) {
+	public SearchTag findTagByCode(Class className, String code) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<MasterData> criteriaQuery =  criteriaBuilder.createQuery(className);
-		Root<MasterData> root = criteriaQuery.from(className);
+		CriteriaQuery<SearchTag> criteriaQuery =  criteriaBuilder.createQuery(className);
+		Root<SearchTag> root = criteriaQuery.from(className);
 		criteriaQuery = criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("code"), code));
 		
-		TypedQuery<MasterData> typedQuery = entityManager.createQuery(criteriaQuery);
-		List<MasterData> tagsList = typedQuery.getResultList();
-		for(MasterData searchTag : tagsList) {
+		TypedQuery<SearchTag> typedQuery = entityManager.createQuery(criteriaQuery);
+		List<SearchTag> tagsList = typedQuery.getResultList();
+		for(SearchTag searchTag : tagsList) {
 			return searchTag;
 		}
-		return new MasterData();
+		return new SearchTag();
 	}
 	
 	public void save(Product product) {
-		Set<MasterData> searchTags = new HashSet<MasterData>();
+		Set<SearchTag> searchTags = new HashSet<SearchTag>();
 		
-		for(MasterData master : product.getSearchTags()) {
-			MasterData masterData = findTagByCode(MasterData.class, master.getCode());
+		for(SearchTag master : product.getSearchTags()) {
+			SearchTag masterData = findTagByCode(SearchTag.class, master.getCode());
 			searchTags.add(masterData);
 		}
 		
@@ -100,9 +101,16 @@ public class ProductService implements IProductService {
 		oldDataStore.setStatus(newDataStore.getStatus());
 	}
 	
-	public void setSearchTags(Set<MasterData> newTags,Set<MasterData> oldTags ) {
-		 for(MasterData master :  newTags) {
-			 
-		 }
+	public void setSearchTags(Set<SearchTag> newTags,Set<SearchTag> oldTags ) {
+		
+		for (Iterator<SearchTag> iterator = oldTags.iterator(); iterator.hasNext();) {
+			if(iterator.next() != null)
+		        iterator.remove();     
+		}
+		
+		for(SearchTag searchTag : newTags) {
+			SearchTag masterData1 = findTagByCode(SearchTag.class, searchTag.getCode());
+			oldTags.add(masterData1);
+		}
 	}
 }

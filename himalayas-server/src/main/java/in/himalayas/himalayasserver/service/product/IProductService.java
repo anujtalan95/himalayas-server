@@ -8,7 +8,7 @@ import in.himalayas.himalayasserver.entity.SearchTag;
 
 public interface IProductService {
 
-	public MasterData findTagByCode(Class className, String code);
+	public SearchTag findTagByCode(Class className, String code);
 	void save(Product product);
 	public List<Product> findAll();
 	public Product getOne(Long id);
