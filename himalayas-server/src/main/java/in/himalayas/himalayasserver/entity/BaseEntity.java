@@ -23,7 +23,7 @@ public abstract class BaseEntity {
 	@UpdateTimestamp
 	private Date lastUpdatedDateTime;
 	
-	private String status;
+	private Boolean status;
 
 	public Long getId() {
 		return id;
@@ -49,11 +49,11 @@ public abstract class BaseEntity {
 		this.lastUpdatedDateTime = lastUpdatedDateTime;
 	}
 
-	public String getStatus() {
+	public Boolean isStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 

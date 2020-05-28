@@ -24,7 +24,8 @@ public class Product extends BaseEntity implements Serializable {
 	private String productName;
 	private String productDescription;
 	private String location;
-
+	private String imageCredit;
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.DETACH})
 	@JoinTable(name = "product_tag_mapping", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private Set<SearchTag> searchTags;
@@ -78,6 +79,14 @@ public class Product extends BaseEntity implements Serializable {
 
 	public void setSearchTags(Set<SearchTag> searchTags) {
 		this.searchTags = searchTags;
+	}
+
+	public String getImageCredit() {
+		return imageCredit;
+	}
+
+	public void setImageCredit(String imageCredit) {
+		this.imageCredit = imageCredit;
 	}
 	
 }

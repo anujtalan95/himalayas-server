@@ -84,7 +84,7 @@ public class ProductService implements IProductService {
 		oldProduct.setProductCode(newProduct.getProductCode());
 		oldProduct.setProductDescription(newProduct.getProductDescription());
 		oldProduct.setProductName(newProduct.getProductName());
-		oldProduct.setStatus(newProduct.getStatus());
+		oldProduct.setStatus(newProduct.isStatus());
 		
 		setDataStore(newProduct.getDataStore(),oldProduct.getDataStore());
 		oldProduct.setDataStore(oldProduct.getDataStore());
@@ -95,9 +95,9 @@ public class ProductService implements IProductService {
 	}
 	
 	public void setDataStore(DataStore newDataStore,DataStore oldDataStore) {
-		oldDataStore.setDataType(newDataStore.getDataType());
+		//oldDataStore.setDataType(newDataStore.getDataType());
 		oldDataStore.setDataContent(newDataStore.getDataContent());
-		oldDataStore.setStatus(newDataStore.getStatus());
+		oldDataStore.setStatus(newDataStore.isStatus());
 	}
 	
 	public void setSearchTags(Set<SearchTag> newTags,Set<SearchTag> oldTags ) {

@@ -47,6 +47,6 @@ public class SearchTagMasterService implements ISearchTagMasterService {
 	public void setMasterData(SearchTag newTagMasterData,SearchTag oldTagMasterData) {
 		oldTagMasterData.setCode(newTagMasterData.getCode());
 		oldTagMasterData.setName(newTagMasterData.getName());
-		oldTagMasterData.setStatus(newTagMasterData.getStatus());
+		oldTagMasterData.setStatus(newTagMasterData.isStatus());
 	}
 }
