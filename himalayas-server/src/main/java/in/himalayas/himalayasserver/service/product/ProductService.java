@@ -16,7 +16,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import in.himalayas.himalayasserver.entity.DataStore;
 import in.himalayas.himalayasserver.entity.Product;
 import in.himalayas.himalayasserver.entity.SearchTag;
 import in.himalayas.himalayasserver.repository.ProductRepository;
@@ -85,19 +84,11 @@ public class ProductService implements IProductService {
 		oldProduct.setProductDescription(newProduct.getProductDescription());
 		oldProduct.setProductName(newProduct.getProductName());
 		oldProduct.setStatus(newProduct.isStatus());
-		
-		setDataStore(newProduct.getDataStore(),oldProduct.getDataStore());
-		oldProduct.setDataStore(oldProduct.getDataStore());
+		oldProduct.setImageEmbeddedURL(newProduct.getImageEmbeddedURL());
 		
 		setSearchTags(newProduct.getSearchTags(),oldProduct.getSearchTags());
 		oldProduct.setSearchTags(oldProduct.getSearchTags());
 		
-	}
-	
-	public void setDataStore(DataStore newDataStore,DataStore oldDataStore) {
-		//oldDataStore.setDataType(newDataStore.getDataType());
-		oldDataStore.setDataContent(newDataStore.getDataContent());
-		oldDataStore.setStatus(newDataStore.isStatus());
 	}
 	
 	public void setSearchTags(Set<SearchTag> newTags,Set<SearchTag> oldTags ) {

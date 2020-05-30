@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,8 +29,7 @@ public class Product extends BaseEntity implements Serializable {
 	@JoinTable(name = "product_tag_mapping", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
 	private Set<SearchTag> searchTags;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private DataStore dataStore;
+	private String imageEmbeddedURL;
 
 	public String getProductCode() {
 		return productCode;
@@ -65,14 +63,6 @@ public class Product extends BaseEntity implements Serializable {
 		this.location = location;
 	}
 
-	public DataStore getDataStore() {
-		return dataStore;
-	}
-
-	public void setDataStore(DataStore dataStore) {
-		this.dataStore = dataStore;
-	}
-
 	public Set<SearchTag> getSearchTags() {
 		return searchTags;
 	}
@@ -87,6 +77,14 @@ public class Product extends BaseEntity implements Serializable {
 
 	public void setImageCredit(String imageCredit) {
 		this.imageCredit = imageCredit;
+	}
+
+	public String getImageEmbeddedURL() {
+		return imageEmbeddedURL;
+	}
+
+	public void setImageEmbeddedURL(String imageEmbeddedURL) {
+		this.imageEmbeddedURL = imageEmbeddedURL;
 	}
 	
 }
